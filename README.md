@@ -10,7 +10,8 @@ Requirements: Python 3
 
 Usage:
 letter_frequency.py "folder name"
-"folder name" should contain files in Unicode format
+
+folder should contain files in Unicode format
 
 Eg. Letter count for Assamese corpus published in the following paper
 http://doi.acm.org/10.1145/2432553.2432566
