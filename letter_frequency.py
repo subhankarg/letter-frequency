@@ -32,7 +32,7 @@ Devanagari Unicode scripts
 Python 3 required for proper Unicode support
 """
 
-__version__ = "1.1"
+__version__ = "1.2"
 
 import os
 import sys
@@ -63,8 +63,12 @@ def get_text(files):
     """
     Get text from each file
     """
-    with open(files, 'r') as file_name:
-        read_data = file_name.read()
+    try:
+        with open(files, 'r') as file_name:
+            read_data = file_name.read()
+    except UnicodeDecodeError:
+        with open(files, 'r', encoding='utf-16') as file_name:
+            read_data = file_name.read()
 
     read_data = text_fix(read_data)
     return read_data
@@ -85,7 +89,7 @@ def count_freq(word_text, count_dictionary, count_total):
                         j += 1
                         break
                 if words[j] in JOINERS:
-                    j += 1
+                    j += 2
                     continue
                 break
             char = words[i:j]
